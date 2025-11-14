@@ -54,10 +54,12 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/20">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title gradient-text mb-4">Featured Projects</h2>
+        <div className="text-center mb-16 reveal">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A collection of projects that showcase my skills and passion for creating exceptional digital experiences
           </p>
@@ -67,26 +69,29 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="glass-card rounded-2xl overflow-hidden card-shadow hover:scale-105 transition-all duration-300 group"
+              className="glass-card rounded-2xl overflow-hidden hover-lift gradient-border group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-video overflow-hidden relative">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 text-foreground">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 text-xs bg-primary/10 text-primary rounded-md border border-primary/20"
+                      className="px-3 py-1 text-xs font-medium bg-secondary/50 text-foreground rounded-full border border-border"
                     >
                       {tech}
                     </span>
@@ -94,22 +99,26 @@ const Projects = () => {
                 </div>
                 <div className="flex gap-3">
                   <Button
+                    variant="default"
                     size="sm"
-                    variant="outline"
-                    className="border-primary/30 text-foreground hover:bg-primary/10 flex items-center gap-2"
-                    onClick={() => window.open(project.liveUrl, '_blank')}
+                    className="flex-1 bg-primary hover:bg-primary/90 gap-2"
+                    asChild
                   >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
                   </Button>
                   <Button
-                    size="sm"
                     variant="outline"
-                    className="border-primary/30 text-foreground hover:bg-primary/10 flex items-center gap-2"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
+                    size="sm"
+                    className="flex-1 border-primary/40 hover:bg-primary/10 gap-2"
+                    asChild
                   >
-                    <Github className="w-4 h-4" />
-                    Code
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4" />
+                      <span>Code</span>
+                    </a>
                   </Button>
                 </div>
               </div>
