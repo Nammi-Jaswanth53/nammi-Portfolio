@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Code2, Database, Globe, Smartphone, Palette, Zap } from "lucide-react";
 
 const skills = [
@@ -41,10 +42,12 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title gradient-text mb-4">Skills & Expertise</h2>
+        <div className="text-center mb-16 reveal">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Skills & <span className="gradient-text">Expertise</span>
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for building modern, scalable, and beautiful applications
           </p>
@@ -54,19 +57,19 @@ const Skills = () => {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="glass-card p-6 rounded-2xl card-shadow hover:scale-105 transition-all duration-300 group"
+              className="glass-card p-8 rounded-2xl hover-lift gradient-border group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-primary mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                 {skill.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">{skill.title}</h3>
-              <p className="text-muted-foreground mb-4">{skill.description}</p>
+              <h3 className="text-2xl font-bold mb-3 text-foreground">{skill.title}</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">{skill.description}</p>
               <div className="flex flex-wrap gap-2">
                 {skill.technologies.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
+                    className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors"
                   >
                     {tech}
                   </span>
